@@ -39,7 +39,29 @@ const influx = new Influx.InfluxDB({
                 nearest_storm_bearing: Influx.FieldType.FLOAT,
                 sunrise_time: Influx.FieldType.INTEGER,
                 sunset_time: Influx.FieldType.INTEGER,
-                sun_status: Influx.FieldType.INTEGER
+                sun_status: Influx.FieldType.INTEGER,
+            }
+        },
+        {
+            measurement: 'forecast',
+            tags: ['source'],
+            fields: {
+                temperature_high: Influx.FieldType.FLOAT,
+                apparent_temperature_high: Influx.FieldType.FLOAT,
+                temperature_low: Influx.FieldType.FLOAT,
+                apparent_temperature_low: Influx.FieldType.FLOAT,
+                dew_point: Influx.FieldType.FLOAT,
+                humidity: Influx.FieldType.FLOAT,
+                wind_speed: Influx.FieldType.FLOAT,
+                wind_bearing: Influx.FieldType.FLOAT,
+                cloud_cover: Influx.FieldType.FLOAT,
+                pressure: Influx.FieldType.FLOAT,
+                ozone: Influx.FieldType.FLOAT,
+                uv_index: Influx.FieldType.FLOAT,
+                visibility: Influx.FieldType.FLOAT,
+                precip_intensity: Influx.FieldType.FLOAT,
+                precip_probability: Influx.FieldType.FLOAT,
+                sun_status: Influx.FieldType.INTEGER,
             }
         }
     ]
@@ -101,6 +123,30 @@ var getForecast = function () {
 
                         sunrise_time: daily.sunriseTime,
                         sunset_time: daily.sunsetTime,
+                        sun_status: sunStatus,
+                    },
+                    tags: {
+                        source: 'darksky'
+                    }
+                },
+                {
+                    measurement: 'forecast',
+                    fields: {
+                        temperature_high: daily.temperatureHigh,
+                        apparent_temperature_high: daily.apparentTemperatureHigh,
+                        temperature_low: daily.temperatureLow,
+                        apparent_temperature_low: daily.apparentTemperatureLow,
+                        dew_point: daily.dewPoint,
+                        humidity: daily.humidity,
+                        wind_speed: daily.windSpeed,
+                        wind_bearing: daily.windBearing,
+                        cloud_cover: daily.cloudCover,
+                        pressure: daily.pressure,
+                        ozone: daily.ozone,
+                        uv_index: daily.uvIndex,
+                        visibility: daily.visibility,
+                        precip_intensity: daily.precipIntensity,
+                        precip_probability: daily.precipProbability,
                         sun_status: sunStatus,
                     },
                     tags: {
