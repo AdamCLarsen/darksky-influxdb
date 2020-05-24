@@ -82,12 +82,11 @@ var getForecast = function () {
             console.error('Error while requesting darksky forecast', err)
         }
         else {
-            var forecast = JSON.parse(responseBody)
-
             if (generalConfig.debug) {
-                console.dir(forecast)
+                console.dir(responseBody)
             }
 
+            var forecast = JSON.parse(responseBody)
             var current = forecast.currently;
             var daily = forecast.daily.data[0];
             var moment = (new Date()).getTime() / 1000;
