@@ -83,7 +83,7 @@ var getForecast = function () {
         }
         else {
             if (generalConfig.debug) {
-                console.dir(responseBody)
+                console.log(responseBody)
             }
 
             var forecast = JSON.parse(responseBody)
